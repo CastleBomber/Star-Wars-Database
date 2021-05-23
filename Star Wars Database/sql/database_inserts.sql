@@ -1,26 +1,23 @@
-# SQL inserts necessary to recreate our database.
-# Or appropriate CSV files and an import script.
-START TRANSACTION;
-INSERT INTO LGBRAND VALUES (23, 'FORESTERS BEST', 'VALUE');
-INSERT INTO LGBRAND VALUES (33, 'BINDER PRIME', 'PREMIUM');
-COMMIT;
+# SQL inserts necessary to recreate our database. Or appropriate CSV files and an import script.
 
+select * from user_account;
 
+insert into user_account(firstname, lastname, username, password) values('Richie','CastleBomber','CastleBomber','$star420Wars!');
+insert into user_account(firstname, lastname, username, password) values('Maddie','Sullivan','Elephant454','$star420Wars!');
+insert into user_account(firstname, lastname, username, password) values('Ilan','Harari','ilanharari','$star420Wars!');
+insert into user_account(firstname, lastname, username, password) values('Darth','Vader','DarthVader','password');
+insert into user_account(firstname, lastname, username, password) values('Darth','Maul','DarthMaul','password');
 
-insert into PLANETS values ('Tatooine', 23, 304, 10465, arid, '1', desert, 1, 200000, NULL);
+select * from PLANETS;
 
+insert into PLANETS(planets_name, planets_rotation_period, planets_orbital_period, planets_diameter, planets_climate, planets_gravity, planets_terrain, planets_surface_water, planets_population, planets_films)
+values ('Tatooine', '23', '304', '10465', 'arid', '1', 'desert', '1', '200000', 1);
+insert into PLANETS(planets_name, planets_rotation_period, planets_orbital_period, planets_diameter, planets_climate, planets_gravity, planets_terrain, planets_surface_water, planets_population, planets_films)
+values ('Alderaan', '24', '364', '12500', 'temperate', '1', 'grasslands', '40', '2000000000', NULL);
 
-create table PLANETS
-(
-planets_id int not null primary key auto_increment,
-planets_name char(50),
-planets_rotation_period int,
-planets_orbital_period int,
-planets_diameter int,
-planets_climate enum('moist', 'unknown', 'murky', 'superheated', 'subartic', 'artic', 'arid', 'polluted', 'rocky', 'tropical', 'humid', 'frozen', 'windy', 'temperate', 'frigid', 'hot', 'artificial temperate '),
-planets_gravity varchar(20),
-planets_terrain set('verdant', 'unknown', 'swamps', 'grass', 'swamp', 'deserts', 'rock arches', 'rainforests', 'lakes', 'rocky', 'vines', 'grasslands', 'acid pools', 'plains', 'gas giant', 'seas', 'fungus forests', 'hills', 'mesas', 'ice canyons', 'jungles', 'savanna', 'barren', 'airless asteroid', 'volcanoes', 'glaciers', 'islands', 'ice caves', 'forests', 'cities', 'grassy hills', 'canyons', 'scrublands', 'reefs', 'mountains', 'sinkholes', 'mountain ranges', 'urban', 'oceans', 'cityscape', 'lava rivers', 'cliffs', 'rocky canyons', 'rock', 'plateaus', 'bogs', 'ocean', 'valleys', 'tundra', 'rivers', 'rocky islands', 'jungle', 'toxic cloudsea', 'ash', 'savannahs', 'mountain', 'fields', 'rocky deserts', 'savannas', 'desert', 'caves'),
-planets_surface_water int,
-planets_population bigint,
-planets_films set('1', '2', '3', '4', '5', '6', '7')
-);
+select * from PEOPLE;
+
+insert into PEOPLE(people_name, people_height, people_mass, people_hair_color, people_skin_color, people_eye_color, people_birth_year, people_gender, people_planet_of_origin, people_films, people_weapon_id, people_vehicles_id, people_species_id, people_starships_id)
+value('Luke Skywalker','172','77','blond','fair','blue','19','male',null,null,null,null,null,null);
+insert into PEOPLE(people_name, people_height, people_mass, people_hair_color, people_skin_color, people_eye_color, people_birth_year, people_gender, people_planet_of_origin, people_films, people_weapon_id, people_vehicles_id, people_species_id, people_starships_id)
+value('C-3PO','167','75',null,'gold','yellow','112',null,null,null,null,null,null,null);

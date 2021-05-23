@@ -13,7 +13,7 @@ CREATE TABLE PEOPLE(
     people_birth_year int,
     people_gender varchar(10),
     people_planet_of_origin int,
-    people_films set('1', '2', '3', '4', '5', '6',’7’),
+    people_films set('1', '2', '3', '4', '5', '6', '7'),
     people_weapon_id int,
     people_vehicles_id int,
     people_species_id int,
@@ -28,6 +28,7 @@ CREATE TABLE PEOPLE(
 
 
 create table if not exists STARSHIPS(
+<<<<<<< HEAD
 starships_id int not null primary key auto_increment,
 starships_name varchar(60),
 starships_model varchar(90),
@@ -49,15 +50,37 @@ create table if not exists WEAPONS(
 weapons_id int not null primary key auto_increment,
 weapons_name varchar(50),
 weapons_color varchar(20)
+=======
+    starships_id int not null primary key auto_increment,
+    starships_name varchar(60),
+    starships_model varchar(90),
+    starships_manufacturer varchar (150),
+    starships_cost_in_credits bigint,
+    starships_length int,
+    starships_max_atmosphering_speed int,
+    starships_min_crew int,
+    starships_max_crew int,
+    starships_passengers int,
+    starships_cargo_capacity bigint,
+    starships_consumables int,
+    starships_hyperdrive_rating decimal(4,2),
+    starships_MGLT int,
+    starships_starship_class varchar(50),
+);
+
+create table if not exists WEAPONS(
+    weapons_id int not null primary key auto_increment,
+    weapons_name varchar(50),
+>>>>>>> origin/MaddieSullivan
 );
 
 create table if not exists EVENTS(
-events_id int not null primary key auto_increment,
-events_name varchar(70),
-events_film smallint,
-events_winner varchar(20),
-events_films_id int,
-foreign key(events_films_id) references FILMS(films_id)
+    events_id int not null primary key auto_increment,
+    events_name varchar(70),
+    events_film smallint,
+    events_winner varchar(20),
+    events_films_id int,
+    foreign key(events_films_id) references FILMS(films_id)
 );
 
 create table if not exists EVENTS_WEAPONS(
@@ -96,6 +119,7 @@ CREATE TABLE FILMS(
 
 create table PLANETS
 (
+<<<<<<< HEAD
 planets_id int not null primary key auto_increment,
 planets_name char(50),
 planets_rotation_period int,
@@ -133,6 +157,46 @@ Status varchar(20),
 Force_value int,
 Foreign key (weapon_id) references weapon (weapon_id),
 Foreign key Apprentice_id references people (people_id)
+=======
+    planets_id int not null primary key auto_increment,
+    planets_name char(50),
+    planets_rotation_period int,
+    planets_orbital_period int,
+    planets_diameter int,
+    planets_climate enum('moist', 'unknown', 'murky', 'superheated', 'subartic', 'artic', 'arid', 'polluted', 'rocky', 'tropical', 'humid', 'frozen', 'windy', 'temperate', 'frigid', 'hot', 'artificial temperate '),
+    planets_gravity int(5,2),
+    planets_terrain set('verdant', 'unknown', 'swamps', 'grass', 'swamp', 'deserts', 'rock arches', 'rainforests', 'lakes', 'rocky', 'vines', 'grasslands', 'acid pools', 'plains', 'gas giant', 'seas', 'fungus forests', 'hills', 'mesas', 'ice canyons', 'jungles', 'savanna', 'barren', 'airless asteroid', 'volcanoes', 'glaciers', 'islands', 'ice caves', 'forests', 'cities', 'grassy hills', 'canyons', 'scrublands', 'reefs', 'mountains', 'sinkholes', 'mountain ranges', 'urban', 'oceans', 'cityscape', 'lava rivers', 'cliffs', 'rocky canyons', 'rock', 'plateaus', 'bogs', 'ocean', 'valleys', 'tundra', 'rivers', 'rocky islands', 'jungle', 'toxic cloudsea', 'ash', 'savannahs', 'mountain', 'fields', 'rocky deserts', 'savannas', 'desert', 'caves'),
+    planets_surface_water int,
+    planets_population bigint,
+    planets_films set('1', '2', '3', '4', '5', '6', '7')
+);
+
+create table SPECIES(
+    species_id not null primary key auto_increment,
+    species_name char(50),
+    species_classification char(50),
+    species_designation char(50),
+    species_average_height int,
+    species_skin_colors set('n/a', 'brown', 'pale', 'peach', 'white', 'pink', 'tan', 'hispanic', 'yellow', 'blue', 'magenta', 'caucasian', 'red', 'green', 'black', 'gray', 'dark', 'asian', 'grey', 'orange', 'pale pink', 'purple'),
+    species_hair_colors set('n/a', 'unknown', 'red', 'brown', 'none', 'white', 'black', 'blond', 'blonde'),
+    species_eye_colors set('n/a', 'unknown', 'brown', 'red', 'indigo', 'grey', 'green', 'golden', 'yellow', 'black', 'orange', 'pink', 'blue', 'hazel', 'amber', 'silver'),
+    species_average_lifespan int,
+    species_planet_of_origin int foreign key,
+    species_language char(50),
+    people,
+    species_films set('1', '2', '3', '4', '5', '6', '7')
+);
+
+
+create table if not exists battle (
+    battle_id int not null auto-increment primary key,
+    weapon_id int,
+    Apprentice_id int,
+    Status varchar(20),
+    Force_value int,
+    Foreign key (weapon_id) references weapon (weapon_id),
+    Foreign key Apprentice_id references people (people_id)
+>>>>>>> origin/MaddieSullivan
 );
 
 create table WARRIORS (
