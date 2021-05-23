@@ -27,13 +27,14 @@ where max(force_value);
 select people_name, planets_name
 from PEOPLE join PLANETS on
 PEOPLE.people_planet_of_origin = PLANETS.planet_of_origin
-ordery by people_name desc;
+order by people_name desc;
 
-select people_name,
-
-
-
-
+select people_name, battles_name
+from PEOPLE join WARRIORS on
+PEOPLE.people_id = WARRIORS.People_id
+join BATTLES on
+BATTLES.warriors_id = WARRIORS.warriors_id
+order by people_name desc;  
 
 
 # 3 Triggers
