@@ -1,3 +1,4 @@
+# SQL DML commands used by our database
 # 5 Views
 create view republic as
 select people_name, force_value
