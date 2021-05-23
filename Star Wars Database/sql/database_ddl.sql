@@ -13,7 +13,7 @@ CREATE TABLE PEOPLE(
     people_birth_year int,
     people_gender varchar(10),
     people_planet_of_origin int,
-    people_films set('1', '2', '3', '4', '5', '6',’7’),
+    people_films set('1', '2', '3', '4', '5', '6', '7'),
     people_weapon_id int,
     people_vehicles_id int,
     people_species_id int,
