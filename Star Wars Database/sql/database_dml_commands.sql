@@ -12,6 +12,13 @@ from WARRIORS join PEOPLE on
 WARRIORS.people_id = PEOPLE.people_id
 where faction = 'sith' order by force_value desc;
 
+create view useTheForce as
+select warriors_id, people_name, force_value
+from WARRIORS join PEOPLE on
+WARRIORS.people_id = PEOPLE.people_id
+where force_value > 0
+order by force_value desc;
+
 
 # 12 Queries
 Select * from SPECIES
@@ -34,7 +41,7 @@ from PEOPLE join WARRIORS on
 PEOPLE.people_id = WARRIORS.People_id
 join BATTLES on
 BATTLES.warriors_id = WARRIORS.warriors_id
-order by people_name desc;  
+order by people_name desc;
 
 
 # 3 Triggers
