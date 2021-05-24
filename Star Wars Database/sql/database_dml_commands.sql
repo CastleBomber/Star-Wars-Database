@@ -12,9 +12,10 @@ warrior.people_id = people.people_id
 where faction = 'sith' order by force_value desc;
 
 
-# 12 Queries
+# 12 Queries (stored as procedures)
 Select * from species
 where species = ‘yodas_race’;
+
 
 
 # 3 Triggers
