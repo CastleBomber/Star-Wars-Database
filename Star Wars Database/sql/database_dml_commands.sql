@@ -14,7 +14,7 @@ where faction = 'sith' order by force_value desc;
 
 # 12 Procedures
 Select * from species
-where species = ‘yodas_race’;
+where species = 'yodas_race';
 
 
 # 3 Triggers
