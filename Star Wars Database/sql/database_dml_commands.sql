@@ -1,4 +1,4 @@
-# 5 Views
+-- 5 Views
 create view republic as
 select people_name, force_value
 from warrior join people on
@@ -12,12 +12,12 @@ warrior.people_id = people.people_id
 where faction = 'sith' order by force_value desc;
 
 
-# 12 Procedures
+-- 12 Procedures
 Select * from species
 where species = 'yodas_race';
 
 
-# 3 Triggers
+-- 3 Triggers
 delimiter //
 create trigger good_guy_points_trigger
 before insert on warriors
