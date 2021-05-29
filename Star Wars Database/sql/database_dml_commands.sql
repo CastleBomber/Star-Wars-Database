@@ -56,7 +56,7 @@ order by force_value desc;
 
 -- which warriors from a certain planet?
 
-create view warrior_planet as 
+create view warrior_planet as
 select people_name, planets_name
 from WARRIORS join PEOPLE on
 WARRIORS.people_id = PEOPLE.people_id
@@ -71,128 +71,131 @@ VEHICLES JOIN PEOPLE ON
 vehicles_id = people_vehicles_id
 join WARRIORS ON
 PEOPLE.people_id = WARRIORS.people_id
-join BATTLES on 
+join BATTLES on
 WARRIORS_ID = warriors_id
 group by BATTLES_ID;
 
 -- view 4
 -- compare force value with lightsaber color
 
-create view weapon_power as 
+create view weapon_power as
 select people_name, force_value, weapons_name
-from PEOPLE join WEAPONS on 
+from PEOPLE join WEAPONS on
 PEOPLE.people_weapon_id = WEAPONS.weapons_id
 join WARRIORS on
 PEOPLE.people_id = WARRIORS.people_id
 order by force_value ASC;
--- Rationale
+
+create view warrior_planet as
+select people_name, planets_name
+from WARRIORS join PEOPLE on
+WARRIORS.people_id = PEOPLE.people_id
+join PLANETS on
+PEOPLE.people_id = PEOPLE.people_planet_of_origin
+group by planets_name;
+
+-- which vehicles are associated with sith vs. republic in what battles?
+create view vehicle_alliance as
+select vehicle_name, faction, battles_name from
+VEHICLES JOIN PEOPLE ON
+vehicles_id = people_vehicles_id
+join WARRIORS ON
+PEOPLE.people_id = WARRIORS.people_id
+join BATTLES on
+WARRIORS_ID = warriors_id
+group by BATTLES_ID;
+
+-- view 4
+-- compare force value with lightsaber color
+
+create view weapon_power as
+select people_name, force_value, weapons_name
+from PEOPLE join WEAPONS on
+PEOPLE.people_weapon_id = WEAPONS.weapons_id
+join WARRIORS on
+PEOPLE.people_id = WARRIORS.people_id
+order by force_value ASC;
 
 
+-- 12 Procedures Queries
+-- -----------------------------------------
 
--- Fifth View
+Select * from SPECIES
+where SPECIES = ‘yodas_race’;
 
--- Rationale
-
-
--- 12 Procedures
-
--- First Procedure
--- TODO: Stub
-select * from species
-where species = 'yodas_race';
-
--- Rationale
-
-
-
--- Second Procedure
--- TODO: Stub
-select people.name
-from people
-join weapon
-where people.weapon_name = “lightsaber”
-
--- Rationale
-
-
-
--- Third Procedure
--- strongest_force?
-
--- Rationale
-
-
-
--- Fourth Procedure
--- people_home_planets?
-
--- Rationale
-
-
-
--- Fifth Procedure
--- people_and_battles?
-
--- Rationale
-
-
-
--- Sixth Procedure
 create procedure strongest_force as
 begin
 select people_name
 from WARRIORS join PEOPLE on
 WARRIORS.people_id = PEOPLE.people_id
 AND force_value = (
-    select WARRIORS.People_id from WARRIORS
-    where max(force_value));
-end;
-
--- Rationale
--- This query would be used by the DB manager to search up the name of the
---  person who has the strongest force_value in the WARRIORS table.
--
-
--- view 5
--- which starships are associated with sith vs. republic?
-
-# 12 procedures
-
--- procedure 1
-Select * from species
-where species = ‘yodas_race’;
-
-# 12 Queries
-Select * from SPECIES
-where SPECIES = ‘yodas_race’;
-
-select people_name
-from WARRIORS join PEOPLE on
-WARRIORS.people_id = PEOPLE.people_id
-AND force_value = (
 select WARRIORS.People_id from WARRIORS
 where max(force_value);
+end;
 
+
+create procedure people_home_planets as
+begin
 select people_name, planets_name
 from PEOPLE join PLANETS on
 PEOPLE.people_planet_of_origin = PLANETS.planet_of_origin
 order by people_name desc;
+END;
 
+
+create procedure people_and_battles as
+begin
 select people_name, battles_name
 from PEOPLE join WARRIORS on
 PEOPLE.people_id = WARRIORS.People_id
 join BATTLES on
 BATTLES.warriors_id = WARRIORS.warriors_id
-order by people_name desc;  
+order by people_name desc;
+end;
 
--- procedure 2: Create new person
-DELIMETER //
+create procedure show_books as
+begin
+select * from BOOKS;
+end;
 
-CREATE PROCEDURE CREATEBATTLE()
+create procedure show_planets as
+begin
+select * from PLANETS;
+end;
+
+create procedure show_events as
+begin
+select * from EVENTS;
+end;
+
+create procedure show_vehicles as
+begin
+select * from VEHICLES;
+end;
+
+create procedure show_weapons as
+begin
+select * from WEAPONS;
+end;
+
+create procedure show_weapons_colors as
+begin
+select weapon_color from WEAPONS;
+end;
+
+create procedure show_starships as
+begin
+select * from STARSHIPS;
+end;
+
+create procedure show_battles as
+begin
+select * from BATTLES;
+end;
 
 -- procedure 3: Initiate battle between two warriors
 
--- procedure 4: 
+-- procedure 4:
 
 -- procedure 5
 
@@ -214,7 +217,7 @@ CREATE PROCEDURE CREATEBATTLE()
 
 -- Seventh Procedure
 create procedure people_home_planets as
-begin 
+begin
 select people_name, planets_name
 from PEOPLE join PLANETS on
 PEOPLE.people_planet_of_origin = PLANETS.planet_of_origin
@@ -293,31 +296,15 @@ begin
 end; //
 delimiter ;
 
--- Rationale
--- The good_guy_points_trigger offers homage to our heroes of the galaxy. The
---  force will always benefit those who follow the proper teachings. We upgrade
---  force_values to be a part of our game-like simulator in which we can have
---  appropriate entities battling each other.
 
-
--- Second Trigger
 delimiter //
-create trigger bad_guy_points_trigger
+create trigger books_trigger
 before insert on warriors
 for each row
 begin
-    if WARRIORS.faction = 'sith' then
-        set WARRIORS.force_value  -= 100;
-    end if;
+	int cool;
+	if BOOKS.books_id = 1 then
+		set cool = 1;
+	end if;
 end; //
 delimiter ;
-
--- Rationale
--- The bad_guy_points_trigger punishes warriors hell bent on conquering the
---  galaxy. As a part of fan fiction, this trigger helps with the storyline of
---  the good side beating the dark side.
-
-
--- Third Trigger
-
--- Rationale

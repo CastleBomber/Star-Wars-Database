@@ -153,6 +153,7 @@ authors_id int,
 publishers_id int
 );
 
+
 create table AUTHORS(
 authors_id int not null primary key auto_increment,
 authors_firstname varchar(70),

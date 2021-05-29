@@ -1,5 +1,7 @@
 # SQL inserts necessary to recreate our database. Or appropriate CSV files and an import script.
 
+use castlebo_starwars;
+
 select * from user_account;
 
 insert into user_account(firstname, lastname, username, password) values('Richie','CastleBomber','CastleBomber','$star420Wars!');
@@ -21,3 +23,21 @@ insert into PEOPLE(people_name, people_height, people_mass, people_hair_color, p
 value('Luke Skywalker','172','77','blond','fair','blue','19','male',null,null,null,null,null,null);
 insert into PEOPLE(people_name, people_height, people_mass, people_hair_color, people_skin_color, people_eye_color, people_birth_year, people_gender, people_planet_of_origin, people_films, people_weapon_id, people_vehicles_id, people_species_id, people_starships_id)
 value('C-3PO','167','75',null,'gold','yellow','112',null,null,null,null,null,null,null);
+insert into PEOPLE(people_name, people_height, people_mass, people_hair_color, people_skin_color, people_eye_color, people_birth_year, people_gender, people_planet_of_origin, people_films, people_weapon_id, people_vehicles_id, people_species_id, people_starships_id)
+value('R2-D2','96','32', null,'white','red','33',null,null,null,null,null,null,null);
+insert into PEOPLE(people_name, people_height, people_mass, people_hair_color, people_skin_color, people_eye_color, people_birth_year, people_gender, people_planet_of_origin, people_films, people_weapon_id, people_vehicles_id, people_species_id, people_starships_id)
+value('Darth Vader','202','136', null,'white','yellow','41','male',null,null,null,null,null,null);
+insert into PEOPLE(people_name, people_height, people_mass, people_hair_color, people_skin_color, people_eye_color, people_birth_year, people_gender, people_planet_of_origin, people_films, people_weapon_id, people_vehicles_id, people_species_id, people_starships_id)
+value('Owen Lars','178','120','brown','light','blue','52','male',null,null,null,null,null,null);
+
+select * from BOOKS;
+select * from PLANETS;
+select * from WEAPONS;
+
+insert into WEAPONS(weapons_name,weapons_color) values ('dark saber','black');
+insert into WEAPONS(weapons_name,weapons_color) values ('red lightsaber','red');
+insert into WEAPONS(weapons_name,weapons_color) values ('blue lightsaber','blue');
+insert into WEAPONS(weapons_name,weapons_color) values ('purple lightsaber','purple');
+insert into WEAPONS(weapons_name,weapons_color) values ('green lightsaber','green');
+insert into WEAPONS(weapons_name,weapons_color) values ('yellow lightsaber','blue');
+insert into WEAPONS(weapons_name,weapons_color) values ('white lightsaber','blue');
